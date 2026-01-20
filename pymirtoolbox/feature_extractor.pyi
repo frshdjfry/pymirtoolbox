@@ -1,0 +1,19 @@
+from __future__ import annotations
+
+from typing import Any, Callable, Dict
+import numpy as np
+
+
+class FeatureExtractor:
+    def __getattr__(self, name: str) -> Callable[..., Dict[str, np.ndarray]]: ...
+
+    def mirbrightness(self, *, audio_input: str, Frame: bool = False, CutOff: float = 1500, MinRMS: float = 0.01) -> Dict[str, np.ndarray]: ...
+
+    def mirchromagram(self, *, audio_input: str, Frame: bool = False, Res: float = 12, Wrap: str = 'yes', Normal: float = 1, Tuning: float = 440.0) -> Dict[str, np.ndarray]: ...
+
+    def mirmfcc(self, *, audio_input: str, Frame: bool = False, Rank: float = 13) -> Dict[str, np.ndarray]: ...
+
+    def mirtempo(self, *, audio_input: str, Frame: bool = False, Min: float = 40, Max: float = 200, Total: float = 1) -> Dict[str, np.ndarray]: ...
+
+
+feature_extractor: FeatureExtractor

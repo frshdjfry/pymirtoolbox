@@ -1,0 +1,17 @@
+# Copyright 2022 MathWorks, Inc.
+
+
+[build-system]
+requires = ["setuptools >= 42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pymirtoolbox"
+version = "0.1.0"
+requires-python = ">=3.9,<=3.12"
+dependencies = [
+    "numpy>=1.23"
+]
+
+[tool.setuptools.package-data]
+"pymirtoolbox" = ["feature_metadata.json", "linux/*", "macos/*"]

@@ -1,0 +1,206 @@
+{
+  "mirbrightness": {
+    "name": "mirbrightness",
+    "category": "timbre",
+    "description": "Spectral brightness, defined as the proportion of energy above a cutoff frequency.",
+    "outputs": {
+      "brightness": {
+        "index": 1,
+        "description": "Brightness values per frame or globally, in the range [0, 1].",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global brightness.",
+        "units": "ratio"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute brightness over successive frames instead of as a single global value.",
+        "unit": null
+      },
+      "CutOff": {
+        "type": "number",
+        "example": 1500,
+        "default": 1500,
+        "description": "Cutoff frequency above which spectral energy is considered for brightness.",
+        "unit": "Hz"
+      },
+      "MinRMS": {
+        "type": "number",
+        "example": 0.01,
+        "default": 0.01,
+        "description": "Minimum RMS energy threshold below which frames are treated as silence.",
+        "unit": "RMS"
+      }
+    }
+  },
+  "mirtempo": {
+    "name": "mirtempo",
+    "category": "rhythm",
+    "description": "Estimates the tempo of the audio in beats per minute, optionally over time.",
+    "outputs": {
+      "tempo": {
+        "index": 1,
+        "description": "Estimated tempo values in beats per minute, either global or per frame and per candidate.",
+        "type": "matrix",
+        "shape": "(n_candidates, n_frames, n_channels) for frame-based analysis, or (n_candidates, n_channels) for global tempo.",
+        "units": "BPM"
+      },
+      "autocor": {
+        "index": 2,
+        "description": "Tempo-related autocorrelation or spectrum representation used internally for tempo estimation.",
+        "type": "matrix",
+        "shape": "Feature-dependent matrix or tensor describing periodicity over lag/frequency, frames, and channels.",
+        "units": "arbitrary"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Estimate tempo over successive frames instead of as a single global value.",
+        "unit": null
+      },
+      "Min": {
+        "type": "number",
+        "example": 60,
+        "default": 40,
+        "description": "Minimum tempo to consider in the search range.",
+        "unit": "BPM"
+      },
+      "Max": {
+        "type": "number",
+        "example": 180,
+        "default": 200,
+        "description": "Maximum tempo to consider in the search range.",
+        "unit": "BPM"
+      },
+      "Total": {
+        "type": "number",
+        "example": 3,
+        "default": 1,
+        "description": "Number of best tempo candidates to return.",
+        "unit": "count"
+      }
+    }
+  },
+    "mirmfcc": {
+    "name": "mirmfcc",
+    "category": "timbre",
+    "description": "Mel-frequency cepstral coefficients describing the spectral envelope over time.",
+    "outputs": {
+      "mfcc": {
+        "index": 1,
+        "description": "MFCC coefficients for each frame.",
+        "type": "matrix",
+        "shape": "(n_coeffs, n_frames, n_channels)",
+        "units": "cepstral"
+      },
+      "melspec": {
+        "index": 2,
+        "description": "Mel-band log-magnitude spectrum for each frame.",
+        "type": "matrix",
+        "shape": "(n_bands, n_frames, n_channels)",
+        "units": "dB"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute MFCCs in successive frames instead of as a single global descriptor.",
+        "unit": null
+      },
+      "Rank": {
+        "type": "number",
+        "example": 13,
+        "default": 13,
+        "description": "Number of MFCC coefficients to compute starting from rank 1.",
+        "unit": "coeffs"
+      }
+    }
+  },
+  "mirchromagram": {
+    "name": "mirchromagram",
+    "category": "tonal",
+    "description": "Chromagram representation of pitch-class energy over time.",
+    "outputs": {
+      "chromagram": {
+        "index": 1,
+        "description": "Chroma energy values over time, optionally across channels or filterbank subbands.",
+        "type": "matrix",
+        "shape": "(n_chroma_bins, n_frames, n_channels)",
+        "units": "normalized energy"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute a time-varying chromagram instead of a single global chroma vector.",
+        "unit": null
+      },
+      "Res": {
+        "type": "number",
+        "example": 24,
+        "default": 12,
+        "description": "Chromatic resolution, i.e. number of chroma bins per octave.",
+        "unit": "bins per octave"
+      },
+      "Wrap": {
+        "type": "string",
+        "example": "no",
+        "default": "yes",
+        "description": "Whether to wrap chroma into a single octave (key-invariant) or keep absolute pitch information.",
+        "unit": null
+      },
+      "Normal": {
+        "type": "number",
+        "example": 2,
+        "default": 1,
+        "description": "Normalization applied to each chroma vector (0: none, 1: L1, 2: L2).",
+        "unit": "L-norm"
+      },
+      "Tuning": {
+        "type": "number",
+        "example": 440.0,
+        "default": 440.0,
+        "description": "Reference tuning frequency of A4.",
+        "unit": "Hz"
+      }
+    }
+  }
+}
