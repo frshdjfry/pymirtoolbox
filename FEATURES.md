@@ -1,5 +1,29 @@
 # pymirtoolbox.feature_extractor
 
+## Pitch
+
+### `mirpitch`
+
+Estimates pitch content and returns pitch frequencies in Hz, optionally with multiple candidates over time.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `pitch` | matrix | (n_pitches, n_frames, n_channels) | Hz | Estimated pitch frequencies in Hz, possibly with multiple candidates per frame. |
+| `representation` | matrix | Feature-dependent periodicity representation over lag/frequency, frames, and channels. | arbitrary | Autocorrelation or cepstral representation used for pitch estimation, with highlighted peaks for selected pitches. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Estimate pitch on successive frames instead of on a single global segment. |
+| `Min` | number | 75 | 75 | Hz | Minimum pitch to consider, in Hz. |
+| `Max` | number | 2400 | 2400 | Hz | Maximum pitch to consider, in Hz. |
+| `Total` | number | 1 | 3 | count | Number of best pitch candidates to keep per frame. |
+| `Mono` | bool | False | True | None | If true, select only the single best pitch per frame (equivalent to Total = 1). |
+
 ## Rhythm
 
 ### `mirtempo`

@@ -202,5 +202,70 @@
         "unit": "Hz"
       }
     }
+  },
+    "mirpitch": {
+    "name": "mirpitch",
+    "category": "pitch",
+    "description": "Estimates pitch content and returns pitch frequencies in Hz, optionally with multiple candidates over time.",
+    "outputs": {
+      "pitch": {
+        "index": 1,
+        "description": "Estimated pitch frequencies in Hz, possibly with multiple candidates per frame.",
+        "type": "matrix",
+        "shape": "(n_pitches, n_frames, n_channels)",
+        "units": "Hz"
+      },
+      "representation": {
+        "index": 2,
+        "description": "Autocorrelation or cepstral representation used for pitch estimation, with highlighted peaks for selected pitches.",
+        "type": "matrix",
+        "shape": "Feature-dependent periodicity representation over lag/frequency, frames, and channels.",
+        "units": "arbitrary"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Estimate pitch on successive frames instead of on a single global segment.",
+        "unit": null
+      },
+      "Min": {
+        "type": "number",
+        "example": 75,
+        "default": 75,
+        "description": "Minimum pitch to consider, in Hz.",
+        "unit": "Hz"
+      },
+      "Max": {
+        "type": "number",
+        "example": 2400,
+        "default": 2400,
+        "description": "Maximum pitch to consider, in Hz.",
+        "unit": "Hz"
+      },
+      "Total": {
+        "type": "number",
+        "example": 3,
+        "default": 1,
+        "description": "Number of best pitch candidates to keep per frame.",
+        "unit": "count"
+      },
+      "Mono": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "If true, select only the single best pitch per frame (equivalent to Total = 1).",
+        "unit": null
+      }
+    }
   }
 }
