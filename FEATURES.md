@@ -1,6 +1,66 @@
 # pymirtoolbox.feature_extractor
 
+## Pitch
+
+### `mirinharmonicity`
+
+Estimates inharmonicity, i.e. the amount of partial energy that does not lie on the ideal harmonic series of a fundamental frequency, as values between 0 and 1.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `inharmonicity` | matrix | (n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global inharmonicity. | ratio | Inharmonicity rate, either globally or per frame, with values between 0 and 1. |
+| `spectrum` | matrix | (n_freq_bins, n_frames, n_channels) | magnitude | Spectrum representation used internally for the inharmonicity estimation. |
+| `f0` | matrix | (n_frames, n_channels) | Hz | Fundamental frequency used as reference for the harmonic series. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Compute the inharmonicity over successive frames instead of as a single global value. |
+
+### `mirpitch`
+
+Estimates pitch content and returns pitch frequencies in Hz, optionally with multiple candidates over time.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `pitch` | matrix | (n_pitches, n_frames, n_channels) | Hz | Estimated pitch frequencies in Hz, possibly with multiple candidates per frame. |
+| `representation` | matrix | Feature-dependent periodicity representation over lag/frequency, frames, and channels. | arbitrary | Autocorrelation or cepstral representation used for pitch estimation, with highlighted peaks for selected pitches. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Estimate pitch on successive frames instead of on a single global segment. |
+| `Min` | number | 75 | 75 | Hz | Minimum pitch to consider, in Hz. |
+| `Max` | number | 2400 | 2400 | Hz | Maximum pitch to consider, in Hz. |
+| `Total` | number | 1 | 3 | count | Number of best pitch candidates to keep per frame. |
+| `Mono` | bool | False | True | None | If true, select only the single best pitch per frame (equivalent to Total = 1). |
+
 ## Rhythm
+
+### `mireventdensity`
+
+Estimates the average frequency of events, i.e., the number of note onsets per second, either globally or over time.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `eventdensity` | matrix | (n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global density. | events per second | Event density values, either per frame or as a single global value, representing the number of note onsets per second. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Compute event density over successive frames instead of as a single global value. |
 
 ### `mirtempo`
 
@@ -63,6 +123,23 @@ Mel-frequency cepstral coefficients describing the spectral envelope over time.
 | `Frame` | bool | False | True | None | Compute MFCCs in successive frames instead of as a single global descriptor. |
 | `Rank` | number | 13 | 13 | coeffs | Number of MFCC coefficients to compute starting from rank 1. |
 
+### `mirroughness`
+
+Estimates sensory roughness (dissonance) of the sound over time or globally.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `roughness` | matrix | (n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global roughness. | arbitrary | Roughness values, either per frame or globally, reflecting sensory dissonance of the signal. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Compute roughness over successive frames instead of as a single global value. |
+
 ## Tonal
 
 ### `mirchromagram`
@@ -85,4 +162,21 @@ Chromagram representation of pitch-class energy over time.
 | `Wrap` | string | yes | no | None | Whether to wrap chroma into a single octave (key-invariant) or keep absolute pitch information. |
 | `Normal` | number | 1 | 2 | L-norm | Normalization applied to each chroma vector (0: none, 1: L1, 2: L2). |
 | `Tuning` | number | 440.0 | 440.0 | Hz | Reference tuning frequency of A4. |
+
+### `mirkey`
+
+Estimates the musical key of the audio, optionally over time.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `key` | matrix | (n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global key estimation. | key index or label representation | Estimated musical key values, either globally or per frame. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Estimate the key on successive frames instead of as a single global value. |
 

@@ -202,5 +202,204 @@
         "unit": "Hz"
       }
     }
+  },
+    "mirpitch": {
+    "name": "mirpitch",
+    "category": "pitch",
+    "description": "Estimates pitch content and returns pitch frequencies in Hz, optionally with multiple candidates over time.",
+    "outputs": {
+      "pitch": {
+        "index": 1,
+        "description": "Estimated pitch frequencies in Hz, possibly with multiple candidates per frame.",
+        "type": "matrix",
+        "shape": "(n_pitches, n_frames, n_channels)",
+        "units": "Hz"
+      },
+      "representation": {
+        "index": 2,
+        "description": "Autocorrelation or cepstral representation used for pitch estimation, with highlighted peaks for selected pitches.",
+        "type": "matrix",
+        "shape": "Feature-dependent periodicity representation over lag/frequency, frames, and channels.",
+        "units": "arbitrary"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Estimate pitch on successive frames instead of on a single global segment.",
+        "unit": null
+      },
+      "Min": {
+        "type": "number",
+        "example": 75,
+        "default": 75,
+        "description": "Minimum pitch to consider, in Hz.",
+        "unit": "Hz"
+      },
+      "Max": {
+        "type": "number",
+        "example": 2400,
+        "default": 2400,
+        "description": "Maximum pitch to consider, in Hz.",
+        "unit": "Hz"
+      },
+      "Total": {
+        "type": "number",
+        "example": 3,
+        "default": 1,
+        "description": "Number of best pitch candidates to keep per frame.",
+        "unit": "count"
+      },
+      "Mono": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "If true, select only the single best pitch per frame (equivalent to Total = 1).",
+        "unit": null
+      }
+    }
+  },
+  "mirinharmonicity": {
+    "name": "mirinharmonicity",
+    "category": "pitch",
+    "description": "Estimates inharmonicity, i.e. the amount of partial energy that does not lie on the ideal harmonic series of a fundamental frequency, as values between 0 and 1.",
+    "outputs": {
+      "inharmonicity": {
+        "index": 1,
+        "description": "Inharmonicity rate, either globally or per frame, with values between 0 and 1.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global inharmonicity.",
+        "units": "ratio"
+      },
+      "spectrum": {
+        "index": 2,
+        "description": "Spectrum representation used internally for the inharmonicity estimation.",
+        "type": "matrix",
+        "shape": "(n_freq_bins, n_frames, n_channels)",
+        "units": "magnitude"
+      },
+      "f0": {
+        "index": 3,
+        "description": "Fundamental frequency used as reference for the harmonic series.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels)",
+        "units": "Hz"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute the inharmonicity over successive frames instead of as a single global value.",
+        "unit": null
+      }
+    }
+  },
+  "mirkey": {
+    "name": "mirkey",
+    "category": "tonal",
+    "description": "Estimates the musical key of the audio, optionally over time.",
+    "outputs": {
+      "key": {
+        "index": 1,
+        "description": "Estimated musical key values, either globally or per frame.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global key estimation.",
+        "units": "key index or label representation"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Estimate the key on successive frames instead of as a single global value.",
+        "unit": null
+      }
+    }
+  },
+  "mirroughness": {
+    "name": "mirroughness",
+    "category": "timbre",
+    "description": "Estimates sensory roughness (dissonance) of the sound over time or globally.",
+    "outputs": {
+      "roughness": {
+        "index": 1,
+        "description": "Roughness values, either per frame or globally, reflecting sensory dissonance of the signal.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global roughness.",
+        "units": "arbitrary"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute roughness over successive frames instead of as a single global value.",
+        "unit": null
+      }
+    }
+  },
+  "mireventdensity": {
+    "name": "mireventdensity",
+    "category": "rhythm",
+    "description": "Estimates the average frequency of events, i.e., the number of note onsets per second, either globally or over time.",
+    "outputs": {
+      "eventdensity": {
+        "index": 1,
+        "description": "Event density values, either per frame or as a single global value, representing the number of note onsets per second.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global density.",
+        "units": "events per second"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute event density over successive frames instead of as a single global value.",
+        "unit": null
+      }
+    }
   }
 }
