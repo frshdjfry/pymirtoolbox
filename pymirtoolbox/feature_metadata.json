@@ -341,5 +341,35 @@
         "unit": null
       }
     }
+  },
+  "mirroughness": {
+    "name": "mirroughness",
+    "category": "timbre",
+    "description": "Estimates sensory roughness (dissonance) of the sound over time or globally.",
+    "outputs": {
+      "roughness": {
+        "index": 1,
+        "description": "Roughness values, either per frame or globally, reflecting sensory dissonance of the signal.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global roughness.",
+        "units": "arbitrary"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute roughness over successive frames instead of as a single global value.",
+        "unit": null
+      }
+    }
   }
 }

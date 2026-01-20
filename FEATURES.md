@@ -106,6 +106,23 @@ Mel-frequency cepstral coefficients describing the spectral envelope over time.
 | `Frame` | bool | False | True | None | Compute MFCCs in successive frames instead of as a single global descriptor. |
 | `Rank` | number | 13 | 13 | coeffs | Number of MFCC coefficients to compute starting from rank 1. |
 
+### `mirroughness`
+
+Estimates sensory roughness (dissonance) of the sound over time or globally.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `roughness` | matrix | (n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global roughness. | arbitrary | Roughness values, either per frame or globally, reflecting sensory dissonance of the signal. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Compute roughness over successive frames instead of as a single global value. |
+
 ## Tonal
 
 ### `mirchromagram`
