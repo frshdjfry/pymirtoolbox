@@ -267,5 +267,49 @@
         "unit": null
       }
     }
+  },
+  "mirinharmonicity": {
+    "name": "mirinharmonicity",
+    "category": "pitch",
+    "description": "Estimates inharmonicity, i.e. the amount of partial energy that does not lie on the ideal harmonic series of a fundamental frequency, as values between 0 and 1.",
+    "outputs": {
+      "inharmonicity": {
+        "index": 1,
+        "description": "Inharmonicity rate, either globally or per frame, with values between 0 and 1.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global inharmonicity.",
+        "units": "ratio"
+      },
+      "spectrum": {
+        "index": 2,
+        "description": "Spectrum representation used internally for the inharmonicity estimation.",
+        "type": "matrix",
+        "shape": "(n_freq_bins, n_frames, n_channels)",
+        "units": "magnitude"
+      },
+      "f0": {
+        "index": 3,
+        "description": "Fundamental frequency used as reference for the harmonic series.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels)",
+        "units": "Hz"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute the inharmonicity over successive frames instead of as a single global value.",
+        "unit": null
+      }
+    }
   }
 }

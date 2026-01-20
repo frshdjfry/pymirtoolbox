@@ -2,6 +2,25 @@
 
 ## Pitch
 
+### `mirinharmonicity`
+
+Estimates inharmonicity, i.e. the amount of partial energy that does not lie on the ideal harmonic series of a fundamental frequency, as values between 0 and 1.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `inharmonicity` | matrix | (n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global inharmonicity. | ratio | Inharmonicity rate, either globally or per frame, with values between 0 and 1. |
+| `spectrum` | matrix | (n_freq_bins, n_frames, n_channels) | magnitude | Spectrum representation used internally for the inharmonicity estimation. |
+| `f0` | matrix | (n_frames, n_channels) | Hz | Fundamental frequency used as reference for the harmonic series. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Compute the inharmonicity over successive frames instead of as a single global value. |
+
 ### `mirpitch`
 
 Estimates pitch content and returns pitch frequencies in Hz, optionally with multiple candidates over time.
