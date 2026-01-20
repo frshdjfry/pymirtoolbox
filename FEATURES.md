@@ -45,6 +45,23 @@ Estimates pitch content and returns pitch frequencies in Hz, optionally with mul
 
 ## Rhythm
 
+### `mireventdensity`
+
+Estimates the average frequency of events, i.e., the number of note onsets per second, either globally or over time.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `eventdensity` | matrix | (n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global density. | events per second | Event density values, either per frame or as a single global value, representing the number of note onsets per second. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Compute event density over successive frames instead of as a single global value. |
+
 ### `mirtempo`
 
 Estimates the tempo of the audio in beats per minute, optionally over time.
