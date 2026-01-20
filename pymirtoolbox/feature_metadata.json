@@ -311,5 +311,35 @@
         "unit": null
       }
     }
+  },
+  "mirkey": {
+    "name": "mirkey",
+    "category": "tonal",
+    "description": "Estimates the musical key of the audio, optionally over time.",
+    "outputs": {
+      "key": {
+        "index": 1,
+        "description": "Estimated musical key values, either globally or per frame.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global key estimation.",
+        "units": "key index or label representation"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Estimate the key on successive frames instead of as a single global value.",
+        "unit": null
+      }
+    }
   }
 }

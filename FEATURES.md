@@ -129,3 +129,20 @@ Chromagram representation of pitch-class energy over time.
 | `Normal` | number | 1 | 2 | L-norm | Normalization applied to each chroma vector (0: none, 1: L1, 2: L2). |
 | `Tuning` | number | 440.0 | 440.0 | Hz | Reference tuning frequency of A4. |
 
+### `mirkey`
+
+Estimates the musical key of the audio, optionally over time.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `key` | matrix | (n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global key estimation. | key index or label representation | Estimated musical key values, either globally or per frame. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Estimate the key on successive frames instead of as a single global value. |
+
