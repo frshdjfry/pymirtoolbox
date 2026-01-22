@@ -1,0 +1,41 @@
+name: tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    container:
+      image: containers.mathworks.com/matlab-runtime:r2025b
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          
+      - name: Configure MATLAB Runtime env
+        run: |
+          MCR_ROOT=/opt/matlabruntime/R2025b
+          echo "MCR_ROOT=$MCR_ROOT" >> $GITHUB_ENV
+          echo "AGREE_TO_MATLAB_RUNTIME_LICENSE=yes" >> $GITHUB_ENV
+          echo "LD_LIBRARY_PATH=$MCR_ROOT/runtime/glnxa64:$MCR_ROOT/bin/glnxa64:$MCR_ROOT/sys/os/glnxa64:$MCR_ROOT/extern/bin/glnxa64:${LD_LIBRARY_PATH}" >> $GITHUB_ENV
+          echo "LD_LIBRARY_PATH after append:"
+          echo "$MCR_ROOT/runtime/glnxa64:$MCR_ROOT/bin/glnxa64:$MCR_ROOT/sys/os/glnxa64:$MCR_ROOT/extern/bin/glnxa64:${LD_LIBRARY_PATH}"
+
+      - name: Install package and test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install .
+          python -m pip install pytest
+
+      - name: Run tests
+        run: |
+          python -m pytest
