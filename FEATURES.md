@@ -180,3 +180,20 @@ Estimates the musical key of the audio, optionally over time.
 | `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
 | `Frame` | bool | False | True | None | Estimate the key on successive frames instead of as a single global value. |
 
+### `mirmode`
+
+Estimates the musical mode (typically major vs. minor) of the audio, either globally or over time.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `mode` | matrix | (n_modes, n_frames, n_channels) for frame-based analysis, or (n_modes, 1, n_channels) for global mode estimation. | mode strength | Mode strength values for the main modes (e.g., major and minor), either globally or per frame. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Estimate mode on successive frames instead of as a single global value. |
+

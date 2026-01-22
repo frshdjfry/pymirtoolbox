@@ -401,5 +401,35 @@
         "unit": null
       }
     }
+  },
+  "mirmode": {
+    "name": "mirmode",
+    "category": "tonal",
+    "description": "Estimates the musical mode (typically major vs. minor) of the audio, either globally or over time.",
+    "outputs": {
+      "mode": {
+        "index": 1,
+        "description": "Mode strength values for the main modes (e.g., major and minor), either globally or per frame.",
+        "type": "matrix",
+        "shape": "(n_modes, n_frames, n_channels) for frame-based analysis, or (n_modes, 1, n_channels) for global mode estimation.",
+        "units": "mode strength"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Estimate mode on successive frames instead of as a single global value.",
+        "unit": null
+      }
+    }
   }
 }
