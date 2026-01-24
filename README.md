@@ -88,8 +88,13 @@ result = feature_extractor.mirmfcc(
 mfcc = result["mfcc"]
 melspec = result["melspec"]
 ```
+
 For the full list of features, parameters, and output shapes, see the
 [Feature reference](FEATURES.md).
+
+For details on the compiled MATLAB dispatcher and build process, see the
+[MATLAB component](matlab_component/).
+
 ---
 
 ## Contributing
