@@ -431,5 +431,35 @@
         "unit": null
       }
     }
+  },
+  "mirhcdf": {
+    "name": "mirhcdf",
+    "category": "tonal",
+    "description": "Harmonic change detection function (HCDF) describing the amount of harmonic change between successive frames.",
+    "outputs": {
+      "hcdf": {
+        "index": 1,
+        "description": "HCDF values over time, with larger values indicating stronger harmonic change between frames.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels)",
+        "units": "arbitrary"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": true,
+        "description": "Compute the HCDF over successive frames. Typically enabled since HCDF is defined over time.",
+        "unit": null
+      }
+    }
   }
 }

@@ -163,6 +163,23 @@ Chromagram representation of pitch-class energy over time.
 | `Normal` | number | 1 | 2 | L-norm | Normalization applied to each chroma vector (0: none, 1: L1, 2: L2). |
 | `Tuning` | number | 440.0 | 440.0 | Hz | Reference tuning frequency of A4. |
 
+### `mirhcdf`
+
+Harmonic change detection function (HCDF) describing the amount of harmonic change between successive frames.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `hcdf` | matrix | (n_frames, n_channels) | arbitrary | HCDF values over time, with larger values indicating stronger harmonic change between frames. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | True | True | None | Compute the HCDF over successive frames. Typically enabled since HCDF is defined over time. |
+
 ### `mirkey`
 
 Estimates the musical key of the audio, optionally over time.
