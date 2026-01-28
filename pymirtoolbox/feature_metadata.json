@@ -461,5 +461,56 @@
         "unit": null
       }
     }
+  },
+    "mirkeystrength": {
+    "name": "mirkeystrength",
+    "category": "tonal",
+    "description": "Computes key strength, i.e. a score between -1 and +1 associated with each possible key candidate, based on cross-correlation of the chromagram with tonal profiles.",
+    "outputs": {
+      "keystrength": {
+        "index": 1,
+        "description": "Key strength values for each tonal center and time position, with separate layers for major and minor keys.",
+        "type": "matrix",
+        "shape": "(n_tonal_centers, n_frames, n_channels, 2) where the last dimension indexes major (layer 1) and minor (layer 2) keys.",
+        "units": "correlation score in [-1, 1]"
+      },
+      "chromagram": {
+        "index": 2,
+        "description": "Underlying wrapped and normalized chromagram used for key strength estimation.",
+        "type": "matrix",
+        "shape": "(n_chroma_bins, n_frames, n_channels)",
+        "units": "normalized energy"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute a time-varying key strength curve over successive frames instead of a single global profile.",
+        "unit": null
+      },
+      "Weight": {
+        "type": "number",
+        "example": 0.5,
+        "default": null,
+        "description": "Weight parameter forwarded to the underlying chromagram computation, controlling profile weighting.",
+        "unit": null
+      },
+      "Triangle": {
+        "type": "bool",
+        "example": true,
+        "default": null,
+        "description": "Triangle weighting option forwarded to the underlying chromagram computation.",
+        "unit": null
+      }
+    }
   }
 }
