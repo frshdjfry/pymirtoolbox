@@ -48,6 +48,7 @@ To compile this project you need, on the build machine:
 - MATLAB
 - MATLAB Compiler SDK
 - DSP System Toolbox
+- Statistics and Machine Learning Toolbox
 - MIRtoolbox (for example, version 1.8.2)
 
 Note that the generated binaries are platform-specific: if you build on Linux, the resulting package (and its compiled binaries) will work on Linux; if you build on macOS, on macOS, and so on.
