@@ -7,10 +7,15 @@ The goal is to keep a one-to-one naming with MIRtoolbox (`mirbrightness`, `mirte
 ---
 
 ## Installation
+> **Important:** `pymirtoolbox` currently supports Python **3.10–3.12** only, and requires **MATLAB Runtime R2025b** (or full **MATLAB R2025b**). Compatibility outside these versions is not guaranteed.
 
 ### Linux
 
+**Note**: If you already have MATLAB R2025b installed, you typically do not need a separate MATLAB Runtime.
+
 1. Install MATLAB Runtime R2025b (no license needed):
+> You can download it manually from [Mathworks website](https://www.mathworks.com/products/compiler/matlab-runtime.html), or use the following `wget` command to download the source and then unzip and install it:
+
 ```
 wget https://ssd.mathworks.com/supportfiles/downloads/R2025b/Release/2/deployment_files/installer/complete/glnxa64/MATLAB_Runtime_R2025b_Update_2_glnxa64.zip  
 unzip -qq -d matlabruntime MATLAB_Runtime_R2025b_Update_2_glnxa64.zip  
@@ -41,7 +46,7 @@ You can now import and use `pymirtoolbox` in your code.
 1. MATLAB Runtime / MATLAB:
 
    - If you already have MATLAB R2025b installed, you typically do not need a separate MATLAB Runtime.
-   - Otherwise, download the MATLAB Runtime R2025b (25.2) macOS installer from MathWorks and install it via the GUI.
+   - Otherwise, download the [MATLAB Runtime R2025b (25.2) macOS installer from MathWorks](https://www.mathworks.com/products/compiler/matlab-runtime.html) and install it via the GUI.
 
 2. Clone and install `pymirtoolbox`:
 ```
