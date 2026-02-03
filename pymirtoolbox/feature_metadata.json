@@ -512,5 +512,49 @@
         "unit": null
       }
     }
+  },
+  "mirmetroid": {
+    "name": "mirmetroid",
+    "category": "rhythm",
+    "description": "Dynamic metrical centroid and metrical strength curves derived from the metrical analysis carried out using mirmetre.",
+    "outputs": {
+      "metrical_centroid": {
+        "index": 1,
+        "description": "Dynamic metrical centroid curve describing the temporal evolution of metrical activity in BPM.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels)",
+        "units": "BPM"
+      },
+      "metrical_strength": {
+        "index": 2,
+        "description": "Dynamic metrical strength curve indicating the overall strength of the dominant metrical levels, potentially exceeding 1.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels)",
+        "units": "arbitrary"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Gate": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Use a simpler weighting method where weights equal autocorrelation scores of the dominant metrical levels, which may yield more abrupt changes in the metrical centroid curve.",
+        "unit": null
+      },
+      "Combine": {
+        "type": "bool",
+        "example": false,
+        "default": true,
+        "description": "If false, do not combine multiple metrical hierarchies; instead, return separate centroid and strength curves for each detected metrical hierarchy.",
+        "unit": null
+      }
+    }
   }
 }
