@@ -556,5 +556,49 @@
         "unit": null
       }
     }
+  },
+  "mirpulseclarity": {
+    "name": "mirpulseclarity",
+    "category": "rhythm",
+    "description": "Estimates rhythmic pulse clarity, indicating the strength of the beats as derived from the mirtempo analysis.",
+    "outputs": {
+      "pulseclarity": {
+        "index": 1,
+        "description": "Pulse clarity values, either as a single global value or as a curve over time when frame-based analysis is used.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global pulse clarity.",
+        "units": "arbitrary (higher values indicate clearer pulse)"
+      },
+      "autocor": {
+        "index": 2,
+        "description": "Autocorrelation representation used internally for the pulse clarity estimation.",
+        "type": "matrix",
+        "shape": "(n_lags, n_frames, n_channels)",
+        "units": "correlation"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute pulse clarity over successive frames instead of as a single global value.",
+        "unit": null
+      },
+      "Model": {
+        "type": "number",
+        "example": 1,
+        "default": 1,
+        "description": "Model index controlling which optimized pulse-clarity model to use (1: default model, 2: alternative model, [1 2]: combined).",
+        "unit": "index"
+      }
+    }
   }
 }

@@ -81,6 +81,25 @@ Dynamic metrical centroid and metrical strength curves derived from the metrical
 | `Gate` | bool | False | True | None | Use a simpler weighting method where weights equal autocorrelation scores of the dominant metrical levels, which may yield more abrupt changes in the metrical centroid curve. |
 | `Combine` | bool | True | False | None | If false, do not combine multiple metrical hierarchies; instead, return separate centroid and strength curves for each detected metrical hierarchy. |
 
+### `mirpulseclarity`
+
+Estimates rhythmic pulse clarity, indicating the strength of the beats as derived from the mirtempo analysis.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `pulseclarity` | matrix | (n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global pulse clarity. | arbitrary (higher values indicate clearer pulse) | Pulse clarity values, either as a single global value or as a curve over time when frame-based analysis is used. |
+| `autocor` | matrix | (n_lags, n_frames, n_channels) | correlation | Autocorrelation representation used internally for the pulse clarity estimation. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Compute pulse clarity over successive frames instead of as a single global value. |
+| `Model` | number | 1 | 1 | index | Model index controlling which optimized pulse-clarity model to use (1: default model, 2: alternative model, [1 2]: combined). |
+
 ### `mirtempo`
 
 Estimates the tempo of the audio in beats per minute, optionally over time.
