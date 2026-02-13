@@ -161,6 +161,25 @@ Mel-frequency cepstral coefficients describing the spectral envelope over time.
 | `Frame` | bool | False | True | None | Compute MFCCs in successive frames instead of as a single global descriptor. |
 | `Rank` | number | 13 | 13 | coeffs | Number of MFCC coefficients to compute starting from rank 1. |
 
+### `mirregularity`
+
+Spectral irregularity, measuring the variability of successive spectral peaks.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `irregularity` | matrix | (n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global irregularity. | ratio | Irregularity values, either per frame or as a single global value, typically between 0 and 2. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Compute irregularity over successive frames instead of as a single global value. |
+| `Jensen` | bool | False | True | None | Use the Jensen (1999) definition, where irregularity is based on squared differences between adjoining partial amplitudes. This is the default model in MIRtoolbox when no specific method is given. |
+| `Krimphof` | bool | False | False | None | Use the Krimphoff et al. (1994) definition, where irregularity is based on deviations from the local mean of each partial and its neighbours. |
+
 ### `mirroughness`
 
 Estimates sensory roughness (dissonance) of the sound over time or globally.
