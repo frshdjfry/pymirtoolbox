@@ -21,6 +21,23 @@ Estimates inharmonicity, i.e. the amount of partial energy that does not lie on 
 | `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
 | `Frame` | bool | False | True | None | Compute the inharmonicity over successive frames instead of as a single global value. |
 
+### `mirmidi`
+
+Performs automated transcription: segments the audio into events, estimates pitches for each event, and converts the result into a MIDI-style note representation.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `midi` | matrix | (n_notes, n_fields) typically following the MIDI Toolbox note matrix convention. | MIDI note matrix | MIDI Toolbox-style note matrix, where each row corresponds to a note event (onset, duration, pitch, etc.). |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to transcribe. |
+| `Contrast` | number | 0.3 | 0.3 | None | Pitch contrast parameter forwarded to mirpitch, controlling peak selection in pitch estimation. |
+
 ### `mirpitch`
 
 Estimates pitch content and returns pitch frequencies in Hz, optionally with multiple candidates over time.
