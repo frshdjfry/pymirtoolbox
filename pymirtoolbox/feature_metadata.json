@@ -644,5 +644,35 @@
         "unit": null
       }
     }
+  },
+  "mirmidi": {
+    "name": "mirmidi",
+    "category": "pitch",
+    "description": "Performs automated transcription: segments the audio into events, estimates pitches for each event, and converts the result into a MIDI-style note representation.",
+    "outputs": {
+      "midi": {
+        "index": 1,
+        "description": "MIDI Toolbox-style note matrix, where each row corresponds to a note event (onset, duration, pitch, etc.).",
+        "type": "matrix",
+        "shape": "(n_notes, n_fields) typically following the MIDI Toolbox note matrix convention.",
+        "units": "MIDI note matrix"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to transcribe.",
+        "unit": null
+      },
+      "Contrast": {
+        "type": "number",
+        "example": 0.3,
+        "default": 0.3,
+        "description": "Pitch contrast parameter forwarded to mirpitch, controlling peak selection in pitch estimation.",
+        "unit": null
+      }
+    }
   }
 }
