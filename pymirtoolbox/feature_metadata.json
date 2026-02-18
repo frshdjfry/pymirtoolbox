@@ -556,5 +556,42 @@
         "unit": null
       }
     }
+  },
+  "mirbeatspectrum": {
+    "name": "mirbeatspectrum",
+    "category": "rhythm",
+    "description": "Beat spectrum measuring acoustic self-similarity as a function of time lag, derived from a similarity matrix.",
+    "outputs": {
+      "beatspectrum": {
+        "index": 1,
+        "description": "Beat spectrum curve over time lag, showing periodicities and self-similarity peaks.",
+        "type": "matrix",
+        "shape": "(n_lags, n_channels)",
+        "units": "similarity (arbitrary scale)"
+      },
+      "simatrix": {
+        "index": 2,
+        "description": "Underlying similarity matrix used to compute the beat spectrum.",
+        "type": "matrix",
+        "shape": "(n_frames, n_frames, n_channels)",
+        "units": "similarity (arbitrary scale)"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze. When an audio file is given, the similarity matrix is based on MFCCs.",
+        "unit": null
+      },
+      "Distance": {
+        "type": "string",
+        "example": "cosine",
+        "default": "cosine",
+        "description": "Name of the distance function, forwarded to mirsimatrix (from those proposed in pdist, e.g., 'cosine', 'euclidean').",
+        "unit": null
+      }
+    }
   }
 }
