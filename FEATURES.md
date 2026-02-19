@@ -62,6 +62,24 @@ Estimates pitch content and returns pitch frequencies in Hz, optionally with mul
 
 ## Rhythm
 
+### `mirbeatspectrum`
+
+Beat spectrum measuring acoustic self-similarity as a function of time lag, derived from a similarity matrix.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `beatspectrum` | matrix | (n_lags, n_channels) | similarity (arbitrary scale) | Beat spectrum curve over time lag, showing periodicities and self-similarity peaks. |
+| `simatrix` | matrix | (n_frames, n_frames, n_channels) | similarity (arbitrary scale) | Underlying similarity matrix used to compute the beat spectrum. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. When an audio file is given, the similarity matrix is based on MFCCs. |
+| `Distance` | string | cosine | cosine | None | Name of the distance function, forwarded to mirsimatrix (from those proposed in pdist, e.g., 'cosine', 'euclidean'). |
+
 ### `mireventdensity`
 
 Estimates the average frequency of events, i.e., the number of note onsets per second, either globally or over time.
