@@ -711,5 +711,63 @@
         "unit": null
       }
     }
+  },
+  "mirmetre": {
+    "name": "mirmetre",
+    "category": "rhythm",
+    "description": "Provides a detailed description of the hierarchical metrical structure by detecting periodicities from the event detection curve and tracking a broad set of metrical levels.",
+    "outputs": {
+      "metre": {
+        "index": 1,
+        "description": "Hierarchical metrical structure over time, describing dominant metrical levels and their periodicities and strengths.",
+        "type": "matrix",
+        "shape": "Feature-dependent multi-level representation over (n_levels, n_frames, n_channels).",
+        "units": "periodicity (BPM-related) and strength"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": true,
+        "description": "Control frame-based analysis; by default mirmetre uses frames of 5 s with a hop of 0.25 s.",
+        "unit": null
+      },
+      "Min": {
+        "type": "number",
+        "example": 24,
+        "default": 24,
+        "description": "Lowest periodicity taken into consideration, expressed in beats per minute.",
+        "unit": "BPM"
+      },
+      "Max": {
+        "type": "number",
+        "example": 240,
+        "default": null,
+        "description": "Highest periodicity taken into consideration, expressed in beats per minute. Default is no upper limit (Inf).",
+        "unit": "BPM"
+      },
+      "Contrast": {
+        "type": "number",
+        "example": 0.05,
+        "default": 0.05,
+        "description": "Contrast factor for peak picking on the autocorrelation function.",
+        "unit": null
+      },
+      "Threshold": {
+        "type": "number",
+        "example": 0.0,
+        "default": 0.0,
+        "description": "Additional threshold factor for peak picking on the autocorrelation function.",
+        "unit": null
+      }
+    }
   }
 }
