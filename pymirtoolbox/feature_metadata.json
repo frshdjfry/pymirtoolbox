@@ -711,5 +711,49 @@
         "unit": null
       }
     }
+  },
+  "mirzerocross": {
+    "name": "mirzerocross",
+    "category": "timbre",
+    "description": "Waveform sign-change rate (zero-crossing rate), used as a simple indicator of noisiness.",
+    "outputs": {
+      "zerocross": {
+        "index": 1,
+        "description": "Zero-crossing rate values, either per frame or as a single global value, measuring how often the signal changes sign.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global rate.",
+        "units": "rate (per second or per sample, depending on 'Per')"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute zero-crossing rate over successive frames instead of as a single global value.",
+        "unit": null
+      },
+      "Per": {
+        "type": "string",
+        "example": "Second",
+        "default": "Second",
+        "description": "Temporal reference for the rate computation: 'Second' counts sign-changes per second, 'Sample' counts sign-changes divided by the number of samples.",
+        "unit": null
+      },
+      "Dir": {
+        "type": "string",
+        "example": "Both",
+        "default": "One",
+        "description": "Definition of sign change: 'One' counts sign-changes in one direction only, 'Both' counts sign-changes in both directions.",
+        "unit": null
+      }
+    }
   }
 }

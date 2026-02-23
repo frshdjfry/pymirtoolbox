@@ -232,6 +232,25 @@ Estimates sensory roughness (dissonance) of the sound over time or globally.
 | `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
 | `Frame` | bool | False | True | None | Compute roughness over successive frames instead of as a single global value. |
 
+### `mirzerocross`
+
+Waveform sign-change rate (zero-crossing rate), used as a simple indicator of noisiness.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `zerocross` | matrix | (n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global rate. | rate (per second or per sample, depending on 'Per') | Zero-crossing rate values, either per frame or as a single global value, measuring how often the signal changes sign. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Compute zero-crossing rate over successive frames instead of as a single global value. |
+| `Per` | string | Second | Second | None | Temporal reference for the rate computation: 'Second' counts sign-changes per second, 'Sample' counts sign-changes divided by the number of samples. |
+| `Dir` | string | One | Both | None | Definition of sign change: 'One' counts sign-changes in one direction only, 'Both' counts sign-changes in both directions. |
+
 ## Tonal
 
 ### `mirchromagram`
