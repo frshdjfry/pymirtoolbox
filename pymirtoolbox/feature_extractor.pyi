@@ -41,5 +41,7 @@ class FeatureExtractor:
 
     def mirtempo(self, *, audio_input: str, Frame: bool = False, Min: float = 40, Max: float = 200, Total: float = 1) -> Dict[str, np.ndarray]: ...
 
+    def mirzerocross(self, *, audio_input: str, Frame: bool = False, Per: str = 'Second', Dir: str = 'One') -> Dict[str, np.ndarray]: ...
+
 
 feature_extractor: FeatureExtractor
