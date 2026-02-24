@@ -755,5 +755,49 @@
         "unit": null
       }
     }
+  },
+  "mirrolloff": {
+    "name": "mirrolloff",
+    "category": "timbre",
+    "description": "Spectral roll-off frequency, defined as the frequency below which a given proportion of the total spectral energy is contained.",
+    "outputs": {
+      "rolloff": {
+        "index": 1,
+        "description": "Roll-off frequency values per frame or globally, indicating the upper boundary below which a fixed proportion of energy is contained.",
+        "type": "matrix",
+        "shape": "(n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global roll-off.",
+        "units": "Hz"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute roll-off frequency over successive frames instead of as a single global value.",
+        "unit": null
+      },
+      "Threshold": {
+        "type": "number",
+        "example": 0.85,
+        "default": 0.85,
+        "description": "Proportion of total spectral energy used to define the roll-off frequency, as a value between 0 and 1.",
+        "unit": "ratio"
+      },
+      "MinRMS": {
+        "type": "number",
+        "example": 0.005,
+        "default": 0.005,
+        "description": "Minimum RMS threshold (relative to the maximum RMS across frames) below which frames are considered quasi-silent and return NaN.",
+        "unit": "relative RMS"
+      }
+    }
   }
 }

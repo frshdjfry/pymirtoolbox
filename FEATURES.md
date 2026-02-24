@@ -215,6 +215,25 @@ Spectral irregularity, measuring the variability of successive spectral peaks.
 | `Jensen` | bool | False | True | None | Use the Jensen (1999) definition, where irregularity is based on squared differences between adjoining partial amplitudes. This is the default model in MIRtoolbox when no specific method is given. |
 | `Krimphof` | bool | False | False | None | Use the Krimphoff et al. (1994) definition, where irregularity is based on deviations from the local mean of each partial and its neighbours. |
 
+### `mirrolloff`
+
+Spectral roll-off frequency, defined as the frequency below which a given proportion of the total spectral energy is contained.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `rolloff` | matrix | (n_frames, n_channels) for frame-based analysis, or (1, n_channels) for global roll-off. | Hz | Roll-off frequency values per frame or globally, indicating the upper boundary below which a fixed proportion of energy is contained. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Compute roll-off frequency over successive frames instead of as a single global value. |
+| `Threshold` | number | 0.85 | 0.85 | ratio | Proportion of total spectral energy used to define the roll-off frequency, as a value between 0 and 1. |
+| `MinRMS` | number | 0.005 | 0.005 | relative RMS | Minimum RMS threshold (relative to the maximum RMS across frames) below which frames are considered quasi-silent and return NaN. |
+
 ### `mirroughness`
 
 Estimates sensory roughness (dissonance) of the sound over time or globally.
