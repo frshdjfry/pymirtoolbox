@@ -799,5 +799,42 @@
         "unit": "relative RMS"
       }
     }
+  },
+  "mirtonalcentroid": {
+    "name": "mirtonalcentroid",
+    "category": "tonal",
+    "description": "Tonal centroid representation mapping chroma information into a six-dimensional tonal space.",
+    "outputs": {
+      "tonalcentroid": {
+        "index": 1,
+        "description": "Tonal centroid coordinates over time, representing the position of the music in a six-dimensional tonal space.",
+        "type": "matrix",
+        "shape": "(6, n_frames, n_channels)",
+        "units": "tonal space coordinates"
+      },
+      "chromagram": {
+        "index": 2,
+        "description": "Underlying chromagram data used to compute the tonal centroid.",
+        "type": "matrix",
+        "shape": "(n_chroma_bins, n_frames, n_channels)",
+        "units": "normalized energy"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "Compute tonal centroid trajectories over successive frames instead of a single global value.",
+        "unit": null
+      }
+    }
   }
 }
