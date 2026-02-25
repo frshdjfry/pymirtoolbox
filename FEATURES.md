@@ -364,3 +364,21 @@ Estimates the musical mode (typically major vs. minor) of the audio, either glob
 | `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
 | `Frame` | bool | False | True | None | Estimate mode on successive frames instead of as a single global value. |
 
+### `mirtonalcentroid`
+
+Tonal centroid representation mapping chroma information into a six-dimensional tonal space.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `tonalcentroid` | matrix | (6, n_frames, n_channels) | tonal space coordinates | Tonal centroid coordinates over time, representing the position of the music in a six-dimensional tonal space. |
+| `chromagram` | matrix | (n_chroma_bins, n_frames, n_channels) | normalized energy | Underlying chromagram data used to compute the tonal centroid. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | Compute tonal centroid trajectories over successive frames instead of a single global value. |
+
