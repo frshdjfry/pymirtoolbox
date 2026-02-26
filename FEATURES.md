@@ -97,6 +97,26 @@ Estimates the average frequency of events, i.e., the number of note onsets per s
 | `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
 | `Frame` | bool | False | True | None | Compute event density over successive frames instead of as a single global value. |
 
+### `mirfluctuation`
+
+Fluctuation patterns describing rhythmic periodicities along auditory frequency channels.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `fluctuation` | matrix | (n_mod_freqs, n_bands, n_frames, n_channels) for standard use; when an outer 'Frame' window is used, an additional outer-frame dimension may be present. | weighted modulation energy | Fluctuation pattern over modulation frequency and auditory bands, representing rhythmic periodicities of the signal. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Mel` | bool | False | False | None | If true, use Mel-band decomposition (40 Mel bands) instead of Bark-band decomposition (20 Bark bands). |
+| `Max` | number | 10.0 | 10.0 | Hz | Maximum fluctuation frequency considered when computing modulation spectra. |
+| `MinRes` | number | 0.01 | 0.01 | Hz | Minimum frequency resolution of the modulation spectrum. |
+| `Summary` | bool | False | True | None | If true, sum fluctuation patterns across auditory bands to obtain a global fluctuation summary. |
+
 ### `mirmetroid`
 
 Dynamic metrical centroid and metrical strength curves derived from the metrical analysis carried out using mirmetre.
