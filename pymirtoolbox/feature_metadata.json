@@ -836,5 +836,56 @@
         "unit": null
       }
     }
+  },
+  "mirfluctuation": {
+    "name": "mirfluctuation",
+    "category": "rhythm",
+    "description": "Fluctuation patterns describing rhythmic periodicities along auditory frequency channels.",
+    "outputs": {
+      "fluctuation": {
+        "index": 1,
+        "description": "Fluctuation pattern over modulation frequency and auditory bands, representing rhythmic periodicities of the signal.",
+        "type": "matrix",
+        "shape": "(n_mod_freqs, n_bands, n_frames, n_channels) for standard use; when an outer 'Frame' window is used, an additional outer-frame dimension may be present.",
+        "units": "weighted modulation energy"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Mel": {
+        "type": "bool",
+        "example": false,
+        "default": false,
+        "description": "If true, use Mel-band decomposition (40 Mel bands) instead of Bark-band decomposition (20 Bark bands).",
+        "unit": null
+      },
+      "Max": {
+        "type": "number",
+        "example": 10.0,
+        "default": 10.0,
+        "description": "Maximum fluctuation frequency considered when computing modulation spectra.",
+        "unit": "Hz"
+      },
+      "MinRes": {
+        "type": "number",
+        "example": 0.01,
+        "default": 0.01,
+        "description": "Minimum frequency resolution of the modulation spectrum.",
+        "unit": "Hz"
+      },
+      "Summary": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "If true, sum fluctuation patterns across auditory bands to obtain a global fluctuation summary.",
+        "unit": null
+      }
+    }
   }
 }
