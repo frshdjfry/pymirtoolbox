@@ -97,6 +97,27 @@ Estimates the average frequency of events, i.e., the number of note onsets per s
 | `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
 | `Frame` | bool | False | True | None | Compute event density over successive frames instead of as a single global value. |
 
+### `mirevents`
+
+Event detection based on a detection curve with automatic peak picking, yielding temporal locations and strengths of events such as notes or chords.
+
+**Outputs**
+
+| Name | Type | Shape | Units | Description |
+| ---- | ---- | ----- | ----- | ----------- |
+| `onset_pos` | matrix | (n_events, n_channels) | seconds | Temporal positions of detected events (onsets), usually in seconds for audio input. |
+
+**Parameters**
+
+| Name | Type | Default | Example | Unit | Description |
+| ---- | ---- | ------- | ------- | ---- | ----------- |
+| `audio_input` | string | null | tests/data/test.wav | None | Path to the audio file to analyze. |
+| `Frame` | bool | False | True | None | If true, further decomposes the detection curve into frames (default frame length 3 s, hop factor 10%). |
+| `Detect` | string | Peaks | Peaks | None | Peak-picking mode on the detection curve: 'Peaks' (local maxima, default), 'Valleys' (local minima), or 0/'no'/'off' to disable peak picking. |
+| `Contrast` | number | 0.01 | 0.01 | None | Contrast factor for peak picking (mirpeaks-style), controlling how prominent a peak must be relative to its surroundings. |
+| `Threshold` | number | 0.0 | 0.0 | None | Absolute threshold for peak picking; peaks below this value are ignored. |
+| `Single` | bool | False | False | None | If true, keep only the single highest peak in the detection curve. |
+
 ### `mirfluctuation`
 
 Fluctuation patterns describing rhythmic periodicities along auditory frequency channels.
