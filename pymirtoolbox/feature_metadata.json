@@ -887,5 +887,63 @@
         "unit": null
       }
     }
+  },
+  "mirevents": {
+    "name": "mirevents",
+    "category": "rhythm",
+    "description": "Event detection based on a detection curve with automatic peak picking, yielding temporal locations and strengths of events such as notes or chords.",
+    "outputs": {
+      "onset_pos": {
+        "index": 1,
+        "description": "Temporal positions of detected events (onsets), usually in seconds for audio input.",
+        "type": "matrix",
+        "shape": "(n_events, n_channels)",
+        "units": "seconds"
+      }
+    },
+    "params": {
+      "audio_input": {
+        "type": "string",
+        "example": "tests/data/test.wav",
+        "default": null,
+        "description": "Path to the audio file to analyze.",
+        "unit": null
+      },
+      "Frame": {
+        "type": "bool",
+        "example": true,
+        "default": false,
+        "description": "If true, further decomposes the detection curve into frames (default frame length 3 s, hop factor 10%).",
+        "unit": null
+      },
+      "Detect": {
+        "type": "string",
+        "example": "Peaks",
+        "default": "Peaks",
+        "description": "Peak-picking mode on the detection curve: 'Peaks' (local maxima, default), 'Valleys' (local minima), or 0/'no'/'off' to disable peak picking.",
+        "unit": null
+      },
+      "Contrast": {
+        "type": "number",
+        "example": 0.01,
+        "default": 0.01,
+        "description": "Contrast factor for peak picking (mirpeaks-style), controlling how prominent a peak must be relative to its surroundings.",
+        "unit": null
+      },
+      "Threshold": {
+        "type": "number",
+        "example": 0.0,
+        "default": 0.0,
+        "description": "Absolute threshold for peak picking; peaks below this value are ignored.",
+        "unit": null
+      },
+      "Single": {
+        "type": "bool",
+        "example": false,
+        "default": false,
+        "description": "If true, keep only the single highest peak in the detection curve.",
+        "unit": null
+      }
+    }
   }
 }
